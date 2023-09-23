@@ -18,7 +18,7 @@ This guide will walk you through the setup process for integrating Leaflet and O
 
 1. Clone the repository using the following command:
 ```
-git clone https://your_username@bitbucket.org/codebrew_web/leaflet_openstreetmap_library.git
+git clone https://github.com/gauravsandhu1999/leaflet-openstreetmap.git
 ```
 
 2. Include all the necessary CSS and JS files from the repository into your project, where you want to add the map functionality.
