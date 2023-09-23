@@ -3,7 +3,7 @@ const MAP_DIV_ID = 'map';  //    Define the id of div on which map will be rende
 // const MAP_URL = 'https://c4ee-115-240-126-90.ngrok-free.app'; //  this constant will contain the url or website address on which open street map server  is setup
 const MAP_URL = 'https://tile.openstreetmap.org'; //  this constant will contain the url or website address on which open street map server  is setup
 
-const NOMINATIM_API_URL = 'https://nominatim.org';   // this constant will contain the url or website address on which nominatim geocoder server is setup
+const NOMINATIM_API_URL = 'https://nominatim.openstreetmap.org';   // this constant will contain the url or website address on which nominatim geocoder server is setup
 
 const OSRM_API_URL = 'http://router.project-osrm.org';   // this constant will contain the url or website address on which Open Street Routing Machine  is setup
 
