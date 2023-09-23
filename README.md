@@ -4,11 +4,11 @@ This guide will walk you through the setup process for integrating Leaflet and O
 
 ## Step 1: OpenStreetMap Setup
 
-1. Follow the installation guide provided in the [OpenStreetMap Installation Guide](https://bitbucket.org/codebrew_web/leaflet_openstreetmap_library/src/master/OpenStreetMapInstallationGuide.md) to set up OpenStreetMap.
+1. Follow the installation guide provided in the [OpenStreetMap Installation Guide](https://github.com/gauravsandhu1999/leaflet-openstreetmap/blob/main/OpenStreetMapInstallationGuide.md) to set up OpenStreetMap.
 
 ## Step 2: Open Source Routing Machine (OSRM) Setup
 
-1. Set up OSRM by following the instructions in the [OSRM Setup Guide](https://bitbucket.org/codebrew_web/leaflet_openstreetmap_library/src/master/OSRM_installation_guide.md).
+1. Set up OSRM by following the instructions in the [OSRM Setup Guide](https://github.com/gauravsandhu1999/leaflet-openstreetmap/blob/main/OSRM_installation_guide.md).
 
 ## Step 3: Setup OSM Nominatim Geocoding Server
 
