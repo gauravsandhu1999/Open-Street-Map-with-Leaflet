@@ -1,0 +1,129 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>Open Street Map</title>
+  <link rel="icon" href="./leaflet/images/google_earth_icon.png" type="image/x-icon">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+
+
+  <link rel="stylesheet" href="./leaflet/leaflet.css" />
+  <link rel="stylesheet" href="./leaflet/leaflet-routing-machine.css" />
+  <script id="search-js" defer="" src="https://api.mapbox.com/search-js/v1.0.0-beta.16/web.js"></script>
+  <link rel="stylesheet" href="./leaflet/openstreetmap.css" />
+
+</head>
+
+<body>
+
+  <div id="search-container">
+    <div class="form-group">
+      <label for="origin-input">Origin:</label>
+      <input id="origin-input" class="form-control" type="text">
+      <input id="origin-lat" class="form-control" type="hidden">
+      <input id="origin-long" class="form-control" type="hidden">
+    </div>
+    <div class="form-group">
+      <label for="destination-input">Destination:</label>
+      <input id="destination-input" class="form-control" type="text">
+      <input id="destination-lat" class="form-control" type="hidden">
+      <input id="destination-long" class="form-control" type="hidden">
+    </div>
+    <button id="search-button" class="btn btn-primary">Search</button>
+  </div>
+
+  <div id="map">
+  </div>
+
+  <script src="./leaflet/leaflet.js"></script>
+  <script src="./config.js"></script>
+  <script src="./leaflet/leaflet-routing-machine.min.js"></script>
+  <!-- leaflet js -->
+
+  <script src="leafletMapFunctions.js"></script>
+  <script src="./leaflet/Control.Geocoder.js"></script>
+
+  <script>
+
+
+    var map = LeafletMapLibrary.initializeMap();
+
+    // map.on('click', LeafletMapLibrary.handleMapClick);
+
+    LeafletMapLibrary.addSearchControl(map);
+
+    var searchButton = document.getElementById('search-button');
+    var originInput = document.getElementById('origin-input');
+    var destinationInput = document.getElementById('destination-input');
+
+    LeafletMapLibrary.Autocomplete('#origin-input', '#origin-lat', '#origin-long');
+    LeafletMapLibrary.Autocomplete('#destination-input', '#destination-lat', '#destination-long');
+
+
+
+    if (pickup && dropoff) {
+      LeafletMapLibrary.createRoute(pickup.split(','), dropoff.split(','), map);
+    }
+
+    // http://tile.openstreetmap.com/?current_lat=30.378179&current_lon=76.776697&initial_zoom=10
+    if (current_lat && current_lon) {
+      map.setView([current_lat, current_lon], initial_zoom);
+      L.marker([current_lat, current_lon]).addTo(map)
+        .addTo(map)
+        .bindPopup(
+          L.popup({}).setContent(
+            `<h3>Current User Location</h3>`
+          )
+        )
+        .openPopup();
+    }
+
+
+    searchButton.addEventListener('click', function () {
+
+      var originInput = $('#origin-input').val().trim();
+      if (originInput === '') {
+        alert('Please enter an origin location.');
+        return false; 
+      }
+
+      var destinationInput = $('#destination-input').val().trim();
+
+
+      var originLat = $('#origin-lat').val().trim();
+      var originLong = $('#origin-long').val().trim();
+      if (originLat === '' || originLong === '') {
+        alert('Invalid origin address. Please select a valid origin location.');
+        return false; 
+      }
+
+      var destinationInput = $('#destination-input').val().trim();
+      if (destinationInput === '') {
+        alert('Please enter a destination location.');
+        return false; 
+      }
+
+      var destinationLat = $('#destination-lat').val().trim();
+      var destinationLong = $('#destination-long').val().trim();
+      if (destinationLat === '' || destinationLong === '') {
+        alert('Invalid destination address. Please select a valid destination location.');
+        return false; 
+      }
+
+      var originValue = [$('#origin-lat').val(), $('#origin-long').val()];
+      var destinationValue = [$('#destination-lat').val(), $('#destination-long').val()];
+
+      LeafletMapLibrary.createRoute(originValue, destinationValue, map);
+    });
+
+
+    LeafletMapLibrary.addCurrentLocationIcon(map);
+
+  </script>
+</body>
+
+</html>
